@@ -1,56 +1,54 @@
 <?php
-/**
- * Point d'entrée unique de l'application (Front Controller)
- * Toutes les requêtes passent par ce fichier
- */
+session_start();
 
-// Charger les variables d'environnement
-require_once '../.env';
+require_once 'app/config/database.php';
+require_once 'app/models/user.php';
+require_once 'app/models/feedback.php';
+require_once 'app/models/comment.php';
 
-// Définir le répertoire racine de l'application
-define('BASE_PATH', dirname(__DIR__));
-define('APP_PATH', BASE_PATH . '/app');
-define('CONFIG_PATH', APP_PATH . '/Config');
-define('MODELS_PATH', APP_PATH . '/Models');
-define('CONTROLLERS_PATH', APP_PATH . '/Controllers');
-define('VIEWS_PATH', APP_PATH . '/Views');
+require_once 'app/controllers/AuthController.php';
+require_once 'app/controllers/FeedbackController.php';
+require_once 'app/controllers/AdminController.php';
 
-// Charger la configuration de la base de données
-require_once CONFIG_PATH . '/Database.php';
+$action = $_GET['action'] ?? 'home';
 
-// Charger les contrôleurs
-require_once CONTROLLERS_PATH . '/controller.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($action === 'submit-register') (new AuthController())->register();
+    if ($action === 'submit-login') (new AuthController())->login();
+    if ($action === 'submit-feedback') (new FeedbackController())->store();
+    if ($action === 'submit-fomment') (new FeedbackController())->storeComment();
+    if ($action === 'vote') (new FeedbackController())->vote();
+    if ($action === 'signal') (new FeedbackController())->signal();
+    if ($action === 'moderate') (new AdminController())->moderate();
+    exit;
+}
 
-// Charger les modèles
-require_once MODELS_PATH . '/User.php';
-require_once MODELS_PATH . '/Feedback.php';
-require_once MODELS_PATH . '/Comment.php';
-
-// Initialiser la base de données
-$database = new Database();
-
-// Récupérer l'URL et la router vers le bon contrôleur
-$request_uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$request_method = $_SERVER['REQUEST_METHOD'];
-
-// Exemple simple de routage
-if ($request_uri === '/' || $request_uri === '/index.php') {
-    include VIEWS_PATH . '/layout/header.php';
-    include VIEWS_PATH . '/home.php';
-    include VIEWS_PATH . '/layout/footer.php';
-} else if (strpos($request_uri, '/feedbacks') === 0) {
-    include VIEWS_PATH . '/layout/header.php';
-    include VIEWS_PATH . '/feedbacks/index.php';
-    include VIEWS_PATH . '/layout/footer.php';
-} else if (strpos($request_uri, '/auth/login') === 0) {
-    include VIEWS_PATH . '/layout/header.php';
-    include VIEWS_PATH . '/auth/login.php';
-    include VIEWS_PATH . '/layout/footer.php';
-} else if (strpos($request_uri, '/auth/register') === 0) {
-    include VIEWS_PATH . '/layout/header.php';
-    include VIEWS_PATH . '/auth/register.php';
-    include VIEWS_PATH . '/layout/footer.php';
-} else {
-    http_response_code(404);
-    echo "Page non trouvée";
+switch ($action) {
+    case 'home':
+        require_once 'app/views/home.php';
+        break;
+    case 'feedbacks':
+        require_once 'app/views/indexFeedBack.php';
+        break;
+    case 'create-feedback':
+        require_once 'app/views/createFeedBack.php';
+        break;
+    case 'login':
+        require_once 'app/views/auth/login.php';
+        break;
+    case 'register':
+        require_once 'app/views/auth/register.php';
+        break;
+    case 'admin-dashboard':
+        require_once 'app/views/admin/dashboard.php';
+        break;
+    case 'admin-moderation':
+        require_once 'app/views/admin/moderation.php';
+        break;
+    case 'logout':
+        (new AuthController())->logout();
+        break;
+    default:
+        require_once 'app/views/home.php';
+        break;
 }
