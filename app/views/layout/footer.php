@@ -12,9 +12,9 @@
                     <p class="text-sm text-gray-400">Votre espace académique anonyme pour exprimer la vérité.</p>
                 </div>
                 <div class="flex gap-3">
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition text-sm">f</a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition text-sm">𝕏</a>
-                    <a href="#" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition text-sm">in</a>
+                    <a href="https://facebook.com" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition text-sm">f</a>
+                    <a href="https://x.com" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition text-sm">𝕏</a>
+                    <a href="https://instagram.com" class="w-10 h-10 rounded-full bg-gray-700 hover:bg-gray-600 flex items-center justify-center transition text-sm">in</a>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
             <div>
                 <h4 class="font-bold text-white mb-4 text-sm">Support</h4>
                 <ul class="space-y-2 text-sm">
-                    <li><a href="mailto:support@campusverite.fr" class="text-gray-400 hover:text-white transition">✉️ support@campusverite.fr</a></li>
+                    <li><a href="mailto:support@campusverite.fr" class="text-gray-400 hover:text-white transition">✉️ support@campusverite.bj</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition">🙋 FAQ</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition">📝 Blog</a></li>
                     <li><a href="#" class="text-gray-400 hover:text-white transition">🐛 Reporter un bug</a></li>

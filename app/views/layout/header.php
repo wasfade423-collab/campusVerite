@@ -13,46 +13,69 @@
             --primary-dark: #047857;
             --primary-light: #10b981;
         }
-        
+
         body {
             background: linear-gradient(135deg, #f0fdf4 0%, #f0f9ff 100%);
         }
-        
+
         /* Animations personnalisées */
         @keyframes slideDown {
             from {
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-        
+
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7); }
-            50% { box-shadow: 0 0 0 10px rgba(5, 150, 105, 0); }
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(5, 150, 105, 0.7);
+            }
+
+            50% {
+                box-shadow: 0 0 0 10px rgba(5, 150, 105, 0);
+            }
         }
-        
-        .animate-slide-down { animation: slideDown 0.3s ease-out; }
-        .animate-fade-in { animation: fadeIn 0.3s ease-out; }
-        .pulse-glow { animation: pulse-glow 2s infinite; }
-        
+
+        .animate-slide-down {
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+
         /* Smooth transitions */
-        * { transition: all 0.2s ease; }
-        
+        * {
+            transition: all 0.2s ease;
+        }
+
         /* Hover effects */
         .nav-link {
             position: relative;
             padding-bottom: 0.5rem;
         }
-        
+
         .nav-link::after {
             content: '';
             position: absolute;
@@ -63,7 +86,7 @@
             background: #10b981;
             transition: width 0.3s ease;
         }
-        
+
         .nav-link:hover::after {
             width: 100%;
         }
@@ -85,14 +108,14 @@
                         <p class="text-xs text-gray-500">Feedback Anonyme</p>
                     </div>
                 </a>
-                
+
                 <!-- Navigation principale -->
                 <div class="hidden md:flex gap-8 items-center">
                     <a href="index.php?action=home" class="nav-link text-sm font-medium text-gray-700 hover:text-emerald-600">Accueil</a>
                     <a href="index.php?action=feedbacks" class="nav-link text-sm font-medium text-gray-700 hover:text-emerald-600">Fil d'avis</a>
                     <a href="index.php?action=create-feedback" class="nav-link text-sm font-medium text-gray-700 hover:text-emerald-600">Donner son avis</a>
                 </div>
-                
+
                 <!-- Actions utilisateur -->
                 <div class="flex gap-3 items-center">
                     <?php if (isset($_SESSION['user_role'])): ?>
@@ -116,6 +139,6 @@
             </div>
         </div>
     </nav>
-    
+
     <!-- Contenu principal -->
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-8 animate-fade-in">
